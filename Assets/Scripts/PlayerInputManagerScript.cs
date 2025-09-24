@@ -7,12 +7,20 @@ public class PlayerInputManagerScript : MonoBehaviour {
 
     private bool wasdJoined = false;
     private bool arrowsJoined = false;
-    private bool gamepadJoined = false;
+    
+    private bool gamepadOneJoined = false;
+    private bool gamepadTwoJoined = false;
+    private bool gamepadThreeJoined = false;
+    private bool gamepadFourJoined = false;
+
+    private int maxPlayers = 4;
+    private int numberOfplayers = 0;
 
     // Update is called once per frame
     void Update() {
-        if (Keyboard.current == null) return;
+        if (numberOfplayers == maxPlayers) return;
 
+        
         if (!wasdJoined && Keyboard.current.spaceKey.wasPressedThisFrame) {
             var player = PlayerInput.Instantiate(playerPrefab,
                 controlScheme: "WASD",
@@ -22,6 +30,7 @@ public class PlayerInputManagerScript : MonoBehaviour {
             }
 
             wasdJoined = true;
+            numberOfplayers++;
         }
 
         if (!arrowsJoined && Keyboard.current.rightCtrlKey.wasPressedThisFrame) {
@@ -33,16 +42,57 @@ public class PlayerInputManagerScript : MonoBehaviour {
             }
 
             arrowsJoined = true;
+            numberOfplayers++;
+
         }
 
         foreach (var gamePad in Gamepad.all) {
-            if (gamePad.buttonSouth.wasPressedThisFrame && !gamepadJoined) {
+            
+            
+            if (gamePad.buttonSouth.wasPressedThisFrame && !gamepadOneJoined) {
                 PlayerInput.Instantiate(playerPrefab,
                     controlScheme: "Gamepad",
-                    pairWithDevice: gamePad);
+                    pairWithDevice: Gamepad.all[0]);
                 
-                gamepadJoined = true;
+                gamepadOneJoined = true;
+                numberOfplayers++;
             }
+            
+            if (gamePad.buttonSouth.wasPressedThisFrame && gamepadOneJoined && !gamepadTwoJoined)
+            {
+                PlayerInput.Instantiate(playerPrefab,
+                    controlScheme: "Gamepad",
+                    pairWithDevice: Gamepad.all[1]);
+
+                gamepadTwoJoined = true;
+                numberOfplayers++;
+
+            }
+            
+            if (gamePad.buttonSouth.wasPressedThisFrame && gamepadTwoJoined && !gamepadThreeJoined)
+            {
+                PlayerInput.Instantiate(playerPrefab,
+                    controlScheme: "Gamepad",
+                    pairWithDevice: Gamepad.all[2]);
+
+                gamepadThreeJoined = true;
+                numberOfplayers++;
+
+            }
+            
+            if (gamePad.buttonSouth.wasPressedThisFrame && gamepadThreeJoined && !gamepadFourJoined)
+            {
+                PlayerInput.Instantiate(playerPrefab,
+                    controlScheme: "Gamepad",
+                    pairWithDevice: Gamepad.all[3]);
+
+                gamepadFourJoined = true;
+                numberOfplayers++;
+
+            }
+
+
+
         }
         
         
@@ -52,4 +102,7 @@ public class PlayerInputManagerScript : MonoBehaviour {
         
         
     }
+
+
+
 }
