@@ -380,6 +380,9 @@ MonoBehaviour:
   speed: 0
   frontWheel: {fileID: 6898840444632002336}
   backWheel: {fileID: 4687788690660673409}
+  playerNumber: 0
+  controlScheme: 
+  playerInput: {fileID: 2962876742334201767}
 --- !u!114 &2962876742334201767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +441,7 @@ MonoBehaviour:
     m_ActionId: 118c767a-9b6b-4c27-b845-e15b13798ce3
     m_ActionName: 'Swoopin Cyclist/Duck[/XInputControllerWindows1/leftShoulder,/XInputControllerWindows1/rightShoulder,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: WASD
   m_DefaultActionMap: Swoopin Cyclist
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

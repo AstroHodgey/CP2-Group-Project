@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,13 +14,22 @@ public class BikeMovement : MonoBehaviour {
     public GameObject frontWheel;
     public GameObject backWheel;
 
+    public int playerNumber;
     
     private bool moving = false;
     private bool stunned = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public string controlScheme;
+    public PlayerInput playerInput;
+
     void Start() {
         _controller = GetComponent<CharacterController>();
+        if (controlScheme == "Gamepad") {
+            playerInput.SwitchCurrentControlScheme(controlScheme, Gamepad.current);
+        }
+        else {
+            playerInput.SwitchCurrentControlScheme(controlScheme, Keyboard.current);
+        }
     }
 
     public void OnPedal(InputAction.CallbackContext context) {
