@@ -506,6 +506,10 @@ MonoBehaviour:
   offset: {x: 14, y: 4, z: -30}
   dampening: 0.2
   target: {fileID: 559829721}
+  firstPlayerTransform: {fileID: 116363048}
+  secondPlayerTransform: {fileID: 737016352}
+  thirdPlayerTransform: {fileID: 559829721}
+  fourthPlayerTransform: {fileID: 1267438880}
 --- !u!224 &350242067 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6948368639726778989, guid: af2d6fab038e7584e893ade67ab12042, type: 3}
