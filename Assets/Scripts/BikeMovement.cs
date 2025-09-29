@@ -15,12 +15,14 @@ public class BikeMovement : MonoBehaviour {
     public GameObject backWheel;
 
     public int playerNumber;
-    
+
+    private bool allowedToMove = false;
     private bool moving = false;
     private bool stunned = false;
 
     public string controlScheme;
     public PlayerInput playerInput;
+    public GameLogic gameLogic;
 
     void Start() {
         _controller = GetComponent<CharacterController>();
@@ -30,10 +32,18 @@ public class BikeMovement : MonoBehaviour {
         else {
             playerInput.SwitchCurrentControlScheme(controlScheme, Keyboard.current);
         }
+
+        StartCoroutine(startRace());
     }
 
+    IEnumerator startRace() {
+        yield return new WaitForSeconds(4);
+        allowedToMove = true;
+    }
+    
     public void OnPedal(InputAction.CallbackContext context) {
-
+        if (!allowedToMove) return;
+        
         if (!moving) {
             moving = true;
         }
@@ -66,13 +76,14 @@ public class BikeMovement : MonoBehaviour {
             if (stunned && speed >= 1 ) {
                 speed -= 0.05f;
             }
-            frontWheel.transform.Rotate(0, speed, 0);
-            backWheel.transform.Rotate(0, speed, 0);
         }
-
+        
         if (speed <= 0) {
             moving = false;
         }
+        
+        frontWheel.transform.Rotate(0, speed, 0);
+        backWheel.transform.Rotate(0, speed, 0);
     }
 
     public void Stunned() {
@@ -85,4 +96,44 @@ public class BikeMovement : MonoBehaviour {
         stunned = false;
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.name == "FinishLine") {
+            speed = 4;
+            moving = false;
+            allowedToMove = false;
+            StartCoroutine(Stopped());
+        }
+        
+    }
+
+    IEnumerator Stopped() {
+        yield return new WaitForSeconds(GetPositionInRaceReversed() + 1);
+        speed = 0;
+    }
+
+
+    private int GetPositionInRaceReversed() {
+        int positionInRaceReversed = 0;
+
+        switch (GetPositionInRace()) {
+            case 1: positionInRaceReversed = 4;
+                break;
+            case 2: positionInRaceReversed = 3;
+                break;
+            case 3: positionInRaceReversed = 2;
+                break;
+            case 4: positionInRaceReversed = 1;
+                break;
+        }
+        return positionInRaceReversed;
+    }
+
+    private int GetPositionInRace() {
+        int positionInRace = 0;
+        positionInRace = gameLogic.bikesFinished + 1;
+        gameLogic.bikesFinished++;
+
+        return positionInRace;
+    }
+    
 }
