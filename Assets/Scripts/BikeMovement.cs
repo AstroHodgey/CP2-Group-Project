@@ -107,7 +107,7 @@ public class BikeMovement : MonoBehaviour {
     }
 
     IEnumerator Stopped() {
-        yield return new WaitForSeconds(GetPositionInRaceReversed() + 1);
+        yield return new WaitForSeconds(GetPositionInRaceReversed() + 0.5f);
         speed = 0;
     }
 
