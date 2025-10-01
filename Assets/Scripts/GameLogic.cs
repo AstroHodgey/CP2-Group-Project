@@ -23,6 +23,7 @@ public class GameLogic : MonoBehaviour
         float thirdPlaceDistance = playerX;
         float lastPlaceDistance = playerX;
         float zoomOutZ = 0;
+        float zoomAheadX = 0;
         
         for (int i = 0; i < playerObjects.Length; i++) {
             playerX = playerObjects[i].transform.position.x;
@@ -51,9 +52,10 @@ public class GameLogic : MonoBehaviour
         float distanceBetweenFirstAndLast = firstPlaceDistance - lastPlaceDistance;
         if (distanceBetweenFirstAndLast > 30) {
             zoomOutZ = (0.5f*distanceBetweenFirstAndLast) - 15;
+            zoomAheadX = (0.5f * distanceBetweenFirstAndLast)-15;
         }
 
-        lastPlaceVector3 = new Vector3(lastPlaceDistance, 0 , 0 - zoomOutZ);
+        lastPlaceVector3 = new Vector3(lastPlaceDistance + zoomAheadX, 0 , 0 - zoomOutZ);
 
         transform.position = lastPlaceVector3; //stay at the last place players x for the camera to target
     }
