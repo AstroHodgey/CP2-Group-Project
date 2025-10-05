@@ -13,8 +13,10 @@ public class BikeMovement : MonoBehaviour {
 
     public GameObject frontWheel;
     public GameObject backWheel;
+    public GameObject cyclist;
 
     public int playerNumber;
+    private float slowDownSpeed = 0.01f;
 
     private bool allowedToMove = false;
     private bool moving = false;
@@ -40,10 +42,10 @@ public class BikeMovement : MonoBehaviour {
         yield return new WaitForSeconds(4);
         allowedToMove = true;
     }
-    
+
     public void OnPedal(InputAction.CallbackContext context) {
         if (!allowedToMove) return;
-        
+
         if (!moving) {
             moving = true;
         }
@@ -59,7 +61,12 @@ public class BikeMovement : MonoBehaviour {
     }
 
     public void OnDuck(InputAction.CallbackContext context) {
-        Stunned();
+        if (allowedToMove && !stunned) {
+            cyclist.transform.position = new Vector3(cyclist.transform.position.x, 2.2f, cyclist.transform.position.z);
+            allowedToMove = false;
+            StartCoroutine(unduck());
+            slowDownSpeed = 0.02f;
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context) {
@@ -72,16 +79,16 @@ public class BikeMovement : MonoBehaviour {
         _controller.Move(move * speed * Time.deltaTime);
 
         if (moving) {
-            speed -= 0.01f;
-            if (stunned && speed >= 1 ) {
-                speed -= 0.05f;
+            speed -= slowDownSpeed;
+            if (stunned && speed >= 1) {
+                speed -= 0.06f;
             }
         }
-        
+
         if (speed <= 0) {
             moving = false;
         }
-        
+
         frontWheel.transform.Rotate(0, speed, 0);
         backWheel.transform.Rotate(0, speed, 0);
     }
@@ -90,10 +97,17 @@ public class BikeMovement : MonoBehaviour {
         stunned = true;
         StartCoroutine(notStunned());
     }
-    
+
     IEnumerator notStunned() {
         yield return new WaitForSeconds(2);
         stunned = false;
+    }
+
+    IEnumerator unduck() {
+        yield return new WaitForSeconds(1f);
+        cyclist.transform.position = new Vector3(cyclist.transform.position.x, 2.7f, cyclist.transform.position.z);
+        allowedToMove = true;
+        slowDownSpeed = 0.01f;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -103,7 +117,6 @@ public class BikeMovement : MonoBehaviour {
             allowedToMove = false;
             StartCoroutine(Stopped());
         }
-        
     }
 
     IEnumerator Stopped() {
@@ -111,20 +124,24 @@ public class BikeMovement : MonoBehaviour {
         speed = 0;
     }
 
-
     private int GetPositionInRaceReversed() {
         int positionInRaceReversed = 0;
 
         switch (GetPositionInRace()) {
-            case 1: positionInRaceReversed = 4;
+            case 1:
+                positionInRaceReversed = 4;
                 break;
-            case 2: positionInRaceReversed = 3;
+            case 2:
+                positionInRaceReversed = 3;
                 break;
-            case 3: positionInRaceReversed = 2;
+            case 3:
+                positionInRaceReversed = 2;
                 break;
-            case 4: positionInRaceReversed = 1;
+            case 4:
+                positionInRaceReversed = 1;
                 break;
         }
+
         return positionInRaceReversed;
     }
 
@@ -135,5 +152,4 @@ public class BikeMovement : MonoBehaviour {
 
         return positionInRace;
     }
-    
 }

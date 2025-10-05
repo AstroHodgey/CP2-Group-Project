@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3531234528174466830}
   - component: {fileID: 7799231305213381605}
   - component: {fileID: 8528301197515117459}
-  - component: {fileID: 1738986478499051711}
   m_Layer: 0
   m_Name: Cyclist
   m_TagString: Untagged
@@ -28,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2376575060801956946}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: -1.2939999, y: 1.4749999, z: -0.029000282}
-  m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.20000003}
+  m_LocalPosition: {x: -1.3, y: 1.7, z: -0.029000282}
+  m_LocalScale: {x: 0.1, y: 0.10000002, z: 0.18}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4109163208309195151}
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1738986478499051711
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2376575060801956946}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4195828656611180273
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +97,6 @@ GameObject:
   - component: {fileID: 5722814042162543902}
   - component: {fileID: 2052626881199407373}
   - component: {fileID: 9052158479389370189}
-  - component: {fileID: 5305867722074299844}
   m_Layer: 0
   m_Name: Bike
   m_TagString: Untagged
@@ -196,28 +172,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5305867722074299844
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4195828656611180273}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4687788690660673409
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +183,6 @@ GameObject:
   - component: {fileID: 6024661020183619546}
   - component: {fileID: 1397686725186099465}
   - component: {fileID: 6179623323896136441}
-  - component: {fileID: 3887538656325746473}
   m_Layer: 0
   m_Name: Back Wheel
   m_TagString: Untagged
@@ -305,28 +258,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3887538656325746473
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4687788690660673409}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &6556282034681380963
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,6 +270,7 @@ GameObject:
   - component: {fileID: 1523115546917588442}
   - component: {fileID: 2962876742334201767}
   - component: {fileID: 8087082537479540344}
+  - component: {fileID: 6036934382271376424}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -380,9 +312,11 @@ MonoBehaviour:
   speed: 0
   frontWheel: {fileID: 6898840444632002336}
   backWheel: {fileID: 4687788690660673409}
+  cyclist: {fileID: 0}
   playerNumber: 0
   controlScheme: 
   playerInput: {fileID: 2962876742334201767}
+  gameLogic: {fileID: 0}
 --- !u!114 &2962876742334201767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,6 +404,27 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6036934382271376424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6556282034681380963}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Center: {x: -1.3, y: 2, z: 0}
 --- !u!1 &6898840444632002336
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,7 +436,6 @@ GameObject:
   - component: {fileID: 7515809735025043666}
   - component: {fileID: 2039977557347930625}
   - component: {fileID: 3683651308463163984}
-  - component: {fileID: 4780337291761469217}
   m_Layer: 0
   m_Name: Front Wheel
   m_TagString: Untagged
@@ -557,25 +511,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4780337291761469217
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6898840444632002336}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
