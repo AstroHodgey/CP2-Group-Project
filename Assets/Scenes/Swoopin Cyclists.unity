@@ -267,6 +267,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6036934382271376424, guid: affca032ee4e5814499ee4232d9a1524, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6179623323896136441, guid: affca032ee4e5814499ee4232d9a1524, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2338,6 +2342,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6036934382271376424, guid: affca032ee4e5814499ee4232d9a1524, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6179623323896136441, guid: affca032ee4e5814499ee4232d9a1524, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2814,6 +2822,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magpie Parent Object
       objectReference: {fileID: 0}
+    - target: {fileID: 3703606828225960159, guid: bb92e8c4c5b775944a7a45ba5c6d7ece, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703606828225960159, guid: bb92e8c4c5b775944a7a45ba5c6d7ece, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3703606828225960159, guid: bb92e8c4c5b775944a7a45ba5c6d7ece, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6921583317219397714, guid: bb92e8c4c5b775944a7a45ba5c6d7ece, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45
@@ -2892,7 +2912,7 @@ SceneRoots:
   - {fileID: 902385716}
   - {fileID: 1269908595}
   - {fileID: 253410720}
-  - {fileID: 5704801842867616173}
-  - {fileID: 29538721}
   - {fileID: 195571018}
+  - {fileID: 29538721}
   - {fileID: 974771117}
+  - {fileID: 5704801842867616173}

@@ -111,6 +111,7 @@ public class BikeMovement : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
+        
         if (other.name == "FinishLine") {
             speed = 4;
             moving = false;

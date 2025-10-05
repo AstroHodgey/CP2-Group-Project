@@ -22,7 +22,6 @@ public class MagpieSwoop : MonoBehaviour {
         Transform transform2 = GameObject.FindWithTag("Player2").transform;
         Transform transform3 = GameObject.FindWithTag("Player3").transform;
         Transform transform4 = GameObject.FindWithTag("Player4").transform;
-
         
         playerTransforms = new []{transform1, transform2, transform3, transform4};
     }
@@ -47,12 +46,12 @@ public class MagpieSwoop : MonoBehaviour {
 
         if (swooping && !onDescent) {
             transform.rotation = Quaternion.Euler(0, 0, 45);
-            flying.y = -magpieMoveSpeed / 250;
+            flying.y = -magpieMoveSpeed / 150;
             onDescent = true;
             swooping = false;
         }
 
-        if (onDescent && transform.position.x <= target.position.x + 6.5) {
+        if (onDescent && transform.position.y <= 4) {
             onDescent = false;
             transform.rotation = Quaternion.Euler(0, 0, 0);
             flying.y = 0;
@@ -81,5 +80,9 @@ public class MagpieSwoop : MonoBehaviour {
             Destroy( this);
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log("triggered");
     }
 }

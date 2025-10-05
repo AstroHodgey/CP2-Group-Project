@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magpie Parent Object Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 391316924650467932, guid: 04b81b5c671a871419cef5934614401d, type: 3}
+      propertyPath: m_TagString
+      value: Magpie
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791004533467649306, guid: 04b81b5c671a871419cef5934614401d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8185471423352147929, guid: 04b81b5c671a871419cef5934614401d, type: 3}
       propertyPath: magpieMoveSpeed
       value: 5
