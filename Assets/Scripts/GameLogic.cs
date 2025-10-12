@@ -14,14 +14,19 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private TMP_Text text;
     private string[] stringArray = new string[]{"Ready?", "3", "2", "1", "GO!", ""};
     
+    public float firstPlaceDistance = 0;
+    public float secondPlaceDistance;
+    public float thirdPlaceDistance;
+    public float lastPlaceDistance;
+    
     void Update() {
         
         float playerX = playerObjects[0].transform.position.x;
         
-        float firstPlaceDistance = playerX;
-        float secondPlaceDistance = playerX;
-        float thirdPlaceDistance = playerX;
-        float lastPlaceDistance = playerX;
+        firstPlaceDistance = playerX;
+        secondPlaceDistance = playerX;
+        thirdPlaceDistance = playerX;
+        lastPlaceDistance = playerX;
         float zoomOutZ = 0;
         float zoomAheadX = 0;
         

@@ -82,7 +82,5 @@ public class MagpieSwoop : MonoBehaviour {
         
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Debug.Log("triggered");
-    }
+    
 }

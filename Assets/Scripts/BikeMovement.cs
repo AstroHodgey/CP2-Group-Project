@@ -25,6 +25,8 @@ public class BikeMovement : MonoBehaviour {
     public string controlScheme;
     public PlayerInput playerInput;
     public GameLogic gameLogic;
+    public BoxCollider boxCollider;
+    public GameObject dizzyBirds;
 
     void Start() {
         _controller = GetComponent<CharacterController>();
@@ -66,6 +68,7 @@ public class BikeMovement : MonoBehaviour {
             allowedToMove = false;
             StartCoroutine(unduck());
             slowDownSpeed = 0.02f;
+            boxCollider.enabled = false;
         }
     }
 
@@ -97,10 +100,16 @@ public class BikeMovement : MonoBehaviour {
         stunned = true;
         StartCoroutine(notStunned());
     }
+    public void BirdStunned() {
+        stunned = true;
+        StartCoroutine(notStunned());
+        dizzyBirds.SetActive(true);
+    }
 
     IEnumerator notStunned() {
         yield return new WaitForSeconds(2);
         stunned = false;
+        dizzyBirds.SetActive(false);
     }
 
     IEnumerator unduck() {
@@ -108,9 +117,14 @@ public class BikeMovement : MonoBehaviour {
         cyclist.transform.position = new Vector3(cyclist.transform.position.x, 2.7f, cyclist.transform.position.z);
         allowedToMove = true;
         slowDownSpeed = 0.01f;
+        boxCollider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other) {
+
+        if (other.CompareTag("Magpie" ) && stunned == false) {
+            BirdStunned();
+        }
         
         if (other.name == "FinishLine") {
             speed = 4;
@@ -147,10 +161,25 @@ public class BikeMovement : MonoBehaviour {
     }
 
     private int GetPositionInRace() {
-        int positionInRace = 0;
-        positionInRace = gameLogic.bikesFinished + 1;
+        int positionInRace = gameLogic.bikesFinished + 1;
         gameLogic.bikesFinished++;
-
         return positionInRace;
+    }
+
+    public int GetCurrentPosition() {
+        float playerX = transform.position.x;
+        if (playerX >= gameLogic.firstPlaceDistance) {
+            return 1;
+        }
+        if (playerX >= gameLogic.secondPlaceDistance) {
+            return 2;
+        }
+        if (playerX >= gameLogic.thirdPlaceDistance) {
+            return 3;
+        }
+        if (playerX >= gameLogic.lastPlaceDistance) {
+            return 4;
+        }
+        return 0;
     }
 }
