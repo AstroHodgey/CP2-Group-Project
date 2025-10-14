@@ -9,6 +9,7 @@ public class GameLogic : MonoBehaviour
     public GameObject[] playerObjects;
     private Vector3 lastPlaceVector3;
     public bool raceStarted = false;
+    public bool raceEnded = false;
     public int bikesFinished = 0;
 
     [SerializeField] private TMP_Text text;
@@ -63,6 +64,10 @@ public class GameLogic : MonoBehaviour
         lastPlaceVector3 = new Vector3(lastPlaceDistance + zoomAheadX, 0 , 0 - zoomOutZ);
 
         transform.position = lastPlaceVector3; //stay at the last place players x for the camera to target
+
+        if (bikesFinished == 3) {
+            raceEnded = true;
+        }
     }
 
     private void Start() {

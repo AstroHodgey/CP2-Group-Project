@@ -77,7 +77,7 @@ public class MagpieSwoop : MonoBehaviour {
 
         
         if (transform.position.x <= -10) {
-            Destroy( this);
+            Destroy(gameObject);
         }
         
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,7 @@ public class BikeMovement : MonoBehaviour {
     private bool allowedToMove = false;
     private bool moving = false;
     private bool stunned = false;
+    private bool dazed = false;
 
     public string controlScheme;
     public PlayerInput playerInput;
@@ -52,7 +54,7 @@ public class BikeMovement : MonoBehaviour {
             moving = true;
         }
 
-        if (!stunned) {
+        if (!stunned && !dazed) {
             moveInput = Vector3.right;
             speed += 1f;
         }
@@ -65,7 +67,7 @@ public class BikeMovement : MonoBehaviour {
     public void OnDuck(InputAction.CallbackContext context) {
         if (allowedToMove && !stunned) {
             cyclist.transform.position = new Vector3(cyclist.transform.position.x, 2.2f, cyclist.transform.position.z);
-            allowedToMove = false;
+            dazed = true;
             StartCoroutine(unduck());
             slowDownSpeed = 0.02f;
             boxCollider.enabled = false;
@@ -94,6 +96,10 @@ public class BikeMovement : MonoBehaviour {
 
         frontWheel.transform.Rotate(0, speed, 0);
         backWheel.transform.Rotate(0, speed, 0);
+        
+        if (gameLogic.raceEnded == true) {
+            allowedToMove = false;
+        }
     }
 
     public void Stunned() {
@@ -115,14 +121,16 @@ public class BikeMovement : MonoBehaviour {
     IEnumerator unduck() {
         yield return new WaitForSeconds(1f);
         cyclist.transform.position = new Vector3(cyclist.transform.position.x, 2.7f, cyclist.transform.position.z);
-        allowedToMove = true;
+        dazed = false;
         slowDownSpeed = 0.01f;
         boxCollider.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other) {
-
-        if (other.CompareTag("Magpie" ) && stunned == false) {
+        if (allowedToMove == false) {
+            return;
+        }
+        if (other.CompareTag("Magpie" ) && dazed == false && stunned == false) {
             BirdStunned();
         }
         
@@ -135,11 +143,11 @@ public class BikeMovement : MonoBehaviour {
     }
 
     IEnumerator Stopped() {
-        yield return new WaitForSeconds(GetPositionInRaceReversed() + 0.5f);
+        yield return new WaitForSeconds(GetPositionInRaceReversed()*2);
         speed = 0;
     }
 
-    private int GetPositionInRaceReversed() {
+    public int GetPositionInRaceReversed() {
         int positionInRaceReversed = 0;
 
         switch (GetPositionInRace()) {

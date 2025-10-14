@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 public class MagpieSpawner : MonoBehaviour {
 
     public GameObject magpie;
+    public GameLogic gameLogic;
 
     public float minSpawnInterval;
     public float maxSpawnInterval;
@@ -36,6 +37,10 @@ public class MagpieSpawner : MonoBehaviour {
             Instantiate(magpie, spawnPoint, Quaternion.identity);
             timer = 0f;
             spawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
+        }
+
+        if (gameLogic.raceEnded == true) {
+            Destroy(gameObject);
         }
     }
 }

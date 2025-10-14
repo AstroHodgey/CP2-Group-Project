@@ -154,6 +154,7 @@ MonoBehaviour:
   - {fileID: 865909268}
   - {fileID: 1330975870}
   raceStarted: 0
+  raceEnded: 0
   bikesFinished: 0
   text: {fileID: 1805696231}
   firstPlaceDistance: 0
@@ -817,7 +818,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 5, z: -25}
+  m_LocalPosition: {x: 20, y: 5, z: -30}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -881,6 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 25, y: 5, z: -30}
   dampening: 0.2
+  gameLogic: {fileID: 29538720}
   target: {fileID: 29538721}
 --- !u!224 &350242067 stripped
 RectTransform:
@@ -1750,6 +1752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magpie: {fileID: 1202537753588613017, guid: bb92e8c4c5b775944a7a45ba5c6d7ece, type: 3}
+  gameLogic: {fileID: 29538720}
   minSpawnInterval: 2
   maxSpawnInterval: 6
   spawnInterval: 2
