@@ -67,6 +67,7 @@ public class GameLogic : MonoBehaviour
 
         if (bikesFinished == 3) {
             raceEnded = true;
+            text.text = "FINISHED!";
         }
     }
 
